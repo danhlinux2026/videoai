@@ -1,0 +1,6 @@
+{
+  "name": "Agnes AI Video Studio",
+  "description": "Tạo video ngắn chuyên nghiệp với Agnes AI API, đồng bộ nhịp điệu tự động, hiệu ứng chuyển cảnh, tạo và chỉnh sửa nhân vật từ ảnh tham chiếu (trang phục, biểu cảm), Text-to-Video & Image-to-Video.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
