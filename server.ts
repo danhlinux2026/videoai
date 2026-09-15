@@ -637,15 +637,19 @@ app.post("/api/gemini/generate-storyboard", async (req, res) => {
     if (process.env.GEMINI_API_KEY) {
       try {
         const ai = new GoogleGenAI();
-        const systemPrompt = `You are an elite cinematic video director and screenwriter.
+        const systemPrompt = `You are an elite cinematic video director and prompt engineer specializing in AI video production (Agnes AI, Veo, Minimax, Sora).
 Create a CONTINUOUS, HIGHLY ENGAGING ${count}-scene video script and storyboard for a short video where ONE central character appears consistently across ALL scenes.
 
 CRITICAL REQUIREMENTS:
 1. CONTINUOUS STORYLINE (Kịch bản xuyên suốt): The story must flow seamlessly from scene 1 through scene ${count} with a coherent narrative arc (Introduction -> Progression -> Emotional Climax -> Dramatic Action -> Resolution).
 2. VOICEOVER NARRATION (Lời thoại / Thuyết minh kịch bản): Each scene MUST have a compelling Vietnamese voiceover narration ("voiceoverScript") that sounds natural, emotionally expressive, and connects to the next scene.
-3. BILINGUAL AI PROMPT SYSTEM:
-   - "englishPrompt": The full, detailed AI generation prompt MUST BE IN ENGLISH (optimized for 8K video/image models like Agnes AI, Minimax, Pixverse). Include camera angle, lens (35mm/50mm), lighting, character appearance, and motion.
-   - "vietnameseNotes": A clear Vietnamese note/explanation of the prompt ("Ghi chú tiếng Việt") so Vietnamese users can easily read, understand, and modify the prompt.
+3. BILINGUAL AI PROMPT SYSTEM WITH CHARACTER ACTIONS & CONTEXT:
+   - "englishPrompt": The full, detailed AI generation prompt MUST BE IN ENGLISH (optimized for 8K video/image models). Specify camera shot (35mm/50mm lens), dynamic camera motion, lighting (golden hour rim light, soft volumetric fill), exact character action, and environmental atmosphere.
+   - "vietnameseNotes": A clear Vietnamese explanation/summary of the prompt ("Ghi chú tiếng Việt") so Vietnamese creators understand the cinematic intention and can tweak it quickly.
+   - "characterActionPrompt": Precise English breakdown of character actions, physical gestures, body posture, gait cadence, and micro-expressions (e.g., "The character gracefully adjusts their collar, steps forward with composed posture, turning slightly with an authentic confident smile").
+   - "characterActionNotes": Ghi chú tiếng Việt chi tiết về hành động của nhân vật (cử chỉ tay, bước đi, ánh mắt, nụ cười, tương tác).
+   - "contextEnvironmentPrompt": Precise English description of scene context, background elements, lighting conditions, weather, architectural framing, and mood.
+   - "contextEnvironmentNotes": Ghi chú tiếng Việt về bối cảnh, không gian, ánh sáng xung quanh và cảm xúc khung cảnh.
    - "characterVfxPrompt": English prompt for character visual effects (e.g., golden rim light, particle aura, wind dynamics on hair, biometric face preservation).
    - "characterVfxNotes": Vietnamese note for character visual effects.
    - "environmentPrompt": English prompt for environment context, lighting, weather, and setting.
@@ -666,6 +670,10 @@ Return ONLY a valid JSON object with this exact structure:
       "voiceoverScript": "Lời thoại hoặc lời thuyết minh truyền cảm của cảnh này",
       "englishPrompt": "Ultra-detailed English prompt for AI video generation...",
       "vietnameseNotes": "Ghi chú tiếng Việt giải thích cảnh quay và gợi ý tinh chỉnh...",
+      "characterActionPrompt": "English breakdown of character actions and movements...",
+      "characterActionNotes": "Ghi chú tiếng Việt về hành động và cử chỉ của nhân vật...",
+      "contextEnvironmentPrompt": "English breakdown of scene context, lighting and atmosphere...",
+      "contextEnvironmentNotes": "Ghi chú tiếng Việt về bối cảnh và không gian xung quanh...",
       "characterVfxPrompt": "English character visual effects, rim lighting, face lock...",
       "characterVfxNotes": "Ghi chú hiệu ứng nhân vật tiếng Việt...",
       "environmentPrompt": "English environment, location, atmosphere, weather...",
@@ -695,6 +703,10 @@ Return ONLY a valid JSON object with this exact structure:
               cameraMotion: sc.cameraMotion || (idx === 0 ? "zoom_in" : idx === 1 ? "pan_right" : idx === 2 ? "orbit_360" : idx === 3 ? "pan_left" : "tilt_up"),
               englishPrompt: sc.englishPrompt || `Cinematic 8k shot of a consistent character in ${visualStyle} style, scene ${idx + 1}, beautiful lighting, 35mm lens`,
               vietnameseNotes: sc.vietnameseNotes || `Cảnh ${idx + 1}: Chân dung điện ảnh sắc nét, ánh sáng hài hòa theo phong cách ${visualStyle}.`,
+              characterActionPrompt: sc.characterActionPrompt || `Character maintains steady posture, engaging naturally with the camera in scene ${idx + 1}.`,
+              characterActionNotes: sc.characterActionNotes || `Hành động: Nhân vật giữ phong thái tự tin, tương tác tự nhiên với góc quay cảnh ${idx + 1}.`,
+              contextEnvironmentPrompt: sc.contextEnvironmentPrompt || `Atmospheric setting with rich depth of field and harmonic cinematic lighting.`,
+              contextEnvironmentNotes: sc.contextEnvironmentNotes || `Bối cảnh: Chiều sâu trường ảnh mượt mà, ánh sáng hài hòa làm nổi bật chủ thể.`,
               voiceoverScript: sc.voiceoverScript || `Chào mừng đến với hành trình phân cảnh ${idx + 1}, nơi mọi cảm xúc được thăng hoa trọn vẹn.`,
             }));
             return res.json({ success: true, storyboard: parsed });
@@ -714,6 +726,10 @@ Return ONLY a valid JSON object with this exact structure:
         voiceoverScript: "Mỗi hành trình kỳ diệu đều bắt đầu từ một khoảnh khắc tĩnh lặng, nơi ánh nhìn đầu tiên đánh thức mọi ước mơ.",
         englishPrompt: "Cinematic 8k close-up portrait of an elegant character looking into the camera with confident gentle smile, soft 35mm anamorphic bokeh, three-point studio rim lighting, photorealistic skin pores and ultra-high texture details, steady push in.",
         vietnameseNotes: "Góc quay cận cảnh chân dung mở đầu: Ánh sáng viền dịu nhẹ, nụ cười tự tin nhìn vào máy quay, làm nổi bật đường nét gương mặt không bị méo mó.",
+        characterActionPrompt: "Character gently turns head towards the camera, blinking softly with an inviting micro-smile, maintaining natural, relaxed shoulder posture.",
+        characterActionNotes: "Hành động: Nhân vật khẽ nghiêng đầu nhìn vào ống kính, mắt chớp nhẹ tự nhiên, khóe môi hé nụ cười tươi tắn và vai thả lỏng tự tin.",
+        contextEnvironmentPrompt: "Warm amber sunlit interior with architectural minimalist wood accents and soft morning rays refracting through sheer drapes.",
+        contextEnvironmentNotes: "Bối cảnh: Căn phòng tối giản với điểm nhấn gỗ ấm áp, ánh nắng ban mai chiếu rọi qua rèm voan mỏng manh tạo cảm giác bình yên.",
         characterVfxPrompt: "Subtle warm rim light wrap, natural micro-smile flutter, eyes catchlight reflection, biometric facial geometry lock.",
         characterVfxNotes: "Hiệu ứng viền sáng tóc ấm áp, đốm sáng trong mắt tự nhiên, khóa cấu trúc nhân trắc học khuôn mặt 100%.",
         environmentPrompt: "Minimalist modern studio backdrop transitioning into soft sunset city skyline bokeh, warm amber dusk atmosphere.",
@@ -730,6 +746,10 @@ Return ONLY a valid JSON object with this exact structure:
         voiceoverScript: "Hòa mình vào nhịp đập của phố thị, từng bước chân vững vàng mang theo khát khao khẳng định phong cách riêng.",
         englishPrompt: "Medium shot of the character walking gracefully through a vibrant metropolitan street, stylish movement, fabric flowing with breeze, dynamic pan right tracking camera, rich depth of field, 8k resolution.",
         vietnameseNotes: "Góc quay bán thân theo bước chân dạo phố: Tà áo bay nhẹ tự nhiên trong gió, camera tracking mượt mà sang phải bắt nhịp chuyển động.",
+        characterActionPrompt: "Character walks along the boulevard with a poised catwalk stride, one hand lightly brushing back hair, looking curiously at modern store displays.",
+        characterActionNotes: "Hành động: Nhân vật sải bước tự tin trên vỉa hè đại lộ như trên sàn diễn, tay nhẹ vuốt tóc, ánh mắt nhìn quanh các cửa hiệu hiện đại.",
+        contextEnvironmentPrompt: "Urban bustling boulevard lined with reflective glass towers, golden late afternoon reflections and wet cobblestone highlights.",
+        contextEnvironmentNotes: "Bối cảnh: Đại lộ sầm uất với các tòa tháp kính phản chiếu ánh chiều tà, vỉa hè lấp lánh phản quang tạo chiều sâu đô thị.",
         characterVfxPrompt: "Dynamic cloth simulation, realistic kinetic motion blur on background, consistent facial landmarks preserved.",
         characterVfxNotes: "Chuyển động vải chân thật, làm mờ chuyển động hậu cảnh nhẹ nhàng, gương mặt giữ trọn danh tính.",
         environmentPrompt: "Lively boulevard lined with glass architecture and golden late afternoon sunlight, glistening pavements.",
@@ -746,6 +766,10 @@ Return ONLY a valid JSON object with this exact structure:
         voiceoverScript: "Và khi đối diện với thử thách lớn nhất, vẻ đẹp kiên định từ nội tâm chính là sức mạnh tỏa sáng rực rỡ nhất.",
         englishPrompt: "Dynamic 360 orbit camera around the character displaying an intense, empowering expression, dramatic cinematic lighting, volumetric light rays, slow motion 60fps feel, striking silhouette and vivid eye reflections.",
         vietnameseNotes: "Góc quay 360 độ xoay tròn xung quanh nhân vật: Ánh sáng điện ảnh kịch tính, luồng sáng khối chiếu rọi tôn vinh thần thái kiêu hãnh.",
+        characterActionPrompt: "Character halts mid-step, executing a slow dramatic spin with arms extended slightly, raising chin with fierce determination and commanding poise.",
+        characterActionNotes: "Hành động: Nhân vật dừng bước, thực hiện cú xoay người chậm đầy nội lực, nâng cằm kiêu hãnh với ánh mắt sắc sảo làm chủ không gian.",
+        contextEnvironmentPrompt: "Grand neoclassical rotunda with monumental stone arches, shafts of celestial volumetric light piercing through dust motes.",
+        contextEnvironmentNotes: "Bối cảnh: Nhà vòm phong cách tân cổ điển với hàng cột đá hùng vĩ, luồng sáng xuyên qua không gian cổ kính đầy kịch tính.",
         characterVfxPrompt: "Volumetric atmospheric godrays, glittering light dust particles, dramatic contrast enhancement, razor-sharp facial symmetry.",
         characterVfxNotes: "Tia sáng khối điện ảnh, bụi ánh sáng lấp lánh nhẹ, khóa đối xứng gương mặt sắc nét.",
         environmentPrompt: "Dramatic architectural rotunda with grand arches and celestial top lighting piercing through mist.",
@@ -762,6 +786,10 @@ Return ONLY a valid JSON object with this exact structure:
         voiceoverScript: "Không còn ngập ngừng, mỗi chuyển động giờ đây là một tuyên ngôn của niềm vui và sự tự do tuyệt đối!",
         englishPrompt: "Dynamic medium close-up of the character turning toward the camera, breaking into an exuberant radiant smile, hair tossed naturally, crisp slow-motion capture, energetic camera zoom out with vibrant color grading.",
         vietnameseNotes: "Góc máy trung cận quay ngoảnh lại: Nụ cười rạng rỡ bừng sáng, tóc bay bồng bềnh, camera zoom xa nhẹ tạo cảm giác bứt phá.",
+        characterActionPrompt: "Character spins around joyfully, laughing with open warmth, reaching one hand out playfully towards the viewer as wind catches their attire.",
+        characterActionNotes: "Hành động: Nhân vật xoay người đón nhận niềm vui, nở nụ cười rạng rỡ đầy năng lượng, đưa tay về phía máy quay như gửi lời mời gọi.",
+        contextEnvironmentPrompt: "Open-air rooftop terrace overlooking an endless city vista at magic hour, golden confetti and warm sunset breeze dancing in the air.",
+        contextEnvironmentNotes: "Bối cảnh: Sân thượng trên cao nhìn ra toàn cảnh thành phố lúc hoàng hôn rực rỡ, gió chiều mang theo làn không khí ấm áp sảng khoái.",
         characterVfxPrompt: "Hair physics dynamics, micro-expression smile lines, soft beauty aura flare, zero facial distortion.",
         characterVfxNotes: "Hiệu ứng chuyển động sợi tóc tự nhiên, khóe miệng cười tươi, ánh sáng dịu tôn vinh nụ cười.",
         environmentPrompt: "Sunlit rooftop terrace overlooking panoramic city skyline, golden confetti or warm breeze atmosphere.",
@@ -778,6 +806,10 @@ Return ONLY a valid JSON object with this exact structure:
         voiceoverScript: "Khép lại một ngày rực rỡ, nhưng câu chuyện về vẻ đẹp và phong cách của bạn sẽ còn mãi vang vọng.",
         englishPrompt: "Grand cinematic wide shot of the character standing at sunset shoreline or golden vista, graceful wave or contemplative pose, deep warm amber sky with purples, wide aspect ratio, filmic grain, poetic ending.",
         vietnameseNotes: "Toàn cảnh góc rộng hoàng hôn kết màn: Bầu trời nhuộm màu tím vàng lãng mạn, nhân vật đứng nghiêng vẫy tay chào lưu luyến.",
+        characterActionPrompt: "Character stands gracefully in profile by the water's edge, gazing out at the horizon, slowly turning back with a serene farewell nod.",
+        characterActionNotes: "Hành động: Nhân vật đứng góc nghiêng bên bờ nước, phóng tầm mắt ra đường chân trời, khẽ quay lại gật đầu chào từ biệt đầy lắng đọng.",
+        contextEnvironmentPrompt: "Expansive shoreline at twilight, calm ocean waves reflecting fiery magenta and amber clouds, peaceful dusk atmosphere.",
+        contextEnvironmentNotes: "Bối cảnh: Bờ biển bao la lúc chập tối, từng đợt sóng êm đềm phản chiếu sắc mây đỏ hồng rực rỡ, bầu không khí điện ảnh yên bình.",
         characterVfxPrompt: "Golden hour contour silhouette edge, wind blowing cape/fabric, soft lens flare warmth.",
         characterVfxNotes: "Đường viền hoàng hôn bao quanh dáng người, vạt áo lay động nhẹ theo gió biển chiều.",
         environmentPrompt: "Infinite horizon with tranquil water reflections, blazing orange and twilight blue sky, cinematic dusk.",

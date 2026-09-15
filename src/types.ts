@@ -150,6 +150,11 @@ export interface StoryboardScene {
   // English AI Prompts + Vietnamese Notes
   englishPrompt?: string; // Prompt tiếng Anh xuất cho mô hình AI video/image
   vietnameseNotes?: string; // Ghi chú tiếng Việt giải thích cho người dùng dễ hiểu và chỉnh sửa
+  // Explicit Character Actions & Context (English prompt + Vietnamese notes)
+  characterActionPrompt?: string; // English description of character action, gesture, movement & posture
+  characterActionNotes?: string; // Ghi chú tiếng Việt về hành động, cử chỉ, dáng đi và tương tác nhân vật
+  contextEnvironmentPrompt?: string; // English description of scene context, mood, lighting and background
+  contextEnvironmentNotes?: string; // Ghi chú tiếng Việt về bối cảnh, ánh sáng, cảm xúc và không gian cảnh
   characterVfxPrompt?: string; // Prompt tiếng Anh về hiệu ứng nhân vật (ánh sáng viền, hạt bụi vàng, biểu cảm)
   characterVfxNotes?: string; // Ghi chú tiếng Việt về hiệu ứng nhân vật
   environmentPrompt?: string; // Prompt tiếng Anh về bối cảnh không gian & thời tiết
@@ -171,6 +176,10 @@ export interface VideoClip {
   voiceoverAudioUrl?: string;
   englishPrompt?: string;
   vietnameseNotes?: string;
+  characterActionPrompt?: string;
+  characterActionNotes?: string;
+  contextEnvironmentPrompt?: string;
+  contextEnvironmentNotes?: string;
   transitionToNext?: {
     type: TransitionType;
     duration: number; // seconds e.g. 0.5

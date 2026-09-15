@@ -35,6 +35,7 @@ import {
   Compass,
   FileText,
   HelpCircle,
+  Layers,
 } from "lucide-react";
 import {
   StoryboardScene,
@@ -196,6 +197,14 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         "Cinematic 8k close-up portrait of an elegant character looking directly into the camera with confident radiant smile, soft 35mm anamorphic bokeh, three-point studio rim lighting, photorealistic skin pores and ultra-high texture details, slow smooth push in.",
       vietnameseNotes:
         "Góc cận cảnh mở màn chân dung: Ánh sáng viền dịu nhẹ, nụ cười tự tin nhìn thẳng máy quay, làm nổi bật đường nét gương mặt không bị méo mó.",
+      characterActionPrompt:
+        "Character gently turns head toward the camera, blinking softly with an inviting micro-smile, maintaining natural, relaxed shoulder posture.",
+      characterActionNotes:
+        "Hành động: Nhân vật khẽ nghiêng đầu nhìn vào ống kính, mắt chớp nhẹ tự nhiên, khóe môi hé nụ cười tươi tắn và vai thả lỏng tự tin.",
+      contextEnvironmentPrompt:
+        "Warm amber sunlit interior with architectural minimalist wood accents and soft morning rays refracting through sheer drapes.",
+      contextEnvironmentNotes:
+        "Bối cảnh: Căn phòng tối giản với điểm nhấn gỗ ấm áp, ánh nắng ban mai chiếu rọi qua rèm voan mỏng manh tạo cảm giác bình yên.",
       characterVfxPrompt:
         "Subtle warm golden rim light wrap, natural micro-smile flutter, eye catchlight reflection, biometric facial geometry lock.",
       characterVfxNotes:
@@ -226,6 +235,14 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         "Medium shot of the character walking gracefully through a vibrant metropolitan boulevard, stylish catwalk cadence, fabric flowing naturally with breeze, dynamic pan right tracking camera, rich depth of field, 8k resolution.",
       vietnameseNotes:
         "Góc quay bán thân theo bước chân dạo phố: Tà áo bay tự nhiên theo từng bước đi, máy quay lướt ngang mượt mà sang phải.",
+      characterActionPrompt:
+        "Character walks along the boulevard with a poised catwalk stride, one hand lightly brushing back hair, looking curiously at modern storefront displays.",
+      characterActionNotes:
+        "Hành động: Nhân vật sải bước tự tin trên đại lộ như trên sàn diễn, tay khẽ vuốt tóc, ánh mắt nhìn quanh các cửa hiệu hiện đại.",
+      contextEnvironmentPrompt:
+        "Urban bustling boulevard lined with reflective glass towers, golden late afternoon reflections and wet cobblestone highlights.",
+      contextEnvironmentNotes:
+        "Bối cảnh: Đại lộ sầm uất với các tòa tháp kính phản chiếu ánh chiều tà, vỉa hè lấp lánh phản quang tạo chiều sâu đô thị.",
       characterVfxPrompt:
         "Dynamic realistic cloth simulation, subtle kinetic motion blur on background, consistent facial landmarks preserved without jitter.",
       characterVfxNotes:
@@ -254,6 +271,14 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         "Dynamic 360 orbit camera smoothly sweeping around the character showcasing an intense empowering expression, dramatic cinematic high-contrast lighting, volumetric godrays, slow motion feel, striking crystal embroidered dress.",
       vietnameseNotes:
         "Góc quay vòng quanh 360 độ: Ánh sáng điện ảnh kịch tính, chùm sáng khối rọi từ trên cao, tôn vinh bộ váy dạ hội đính đá lấp lánh.",
+      characterActionPrompt:
+        "Character halts mid-step, executing a slow dramatic spin with arms extended slightly, raising chin with fierce determination and commanding poise.",
+      characterActionNotes:
+        "Hành động: Nhân vật dừng bước, thực hiện cú xoay người chậm đầy nội lực, nâng cằm kiêu hãnh với ánh mắt sắc sảo làm chủ không gian.",
+      contextEnvironmentPrompt:
+        "Grand neoclassical rotunda with monumental stone arches, shafts of celestial volumetric light piercing through dust motes.",
+      contextEnvironmentNotes:
+        "Bối cảnh: Nhà vòm phong cách tân cổ điển với hàng cột đá hùng vĩ, luồng sáng xuyên qua không gian cổ kính đầy kịch tính.",
       characterVfxPrompt:
         "Volumetric atmospheric godrays, glittering light dust particles, dramatic contrast enhancement, razor-sharp facial symmetry.",
       characterVfxNotes:
@@ -282,6 +307,14 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         "Dynamic medium close-up of the character turning playfully toward the camera, breaking into an exuberant radiant genuine smile, hair tossed naturally by wind, energetic camera zoom out with vibrant saturated grading.",
       vietnameseNotes:
         "Góc máy trung cận quay ngoảnh lại: Nụ cười rạng rỡ tự nhiên, mái tóc tung bay trong gió nhẹ, camera lùi xa tạo cảm giác tự do.",
+      characterActionPrompt:
+        "Character spins around joyfully, laughing with open warmth, reaching one hand out playfully towards the viewer as wind catches their attire.",
+      characterActionNotes:
+        "Hành động: Nhân vật xoay người đón nhận niềm vui, nở nụ cười rạng rỡ đầy năng lượng, đưa tay về phía máy quay như gửi lời mời gọi.",
+      contextEnvironmentPrompt:
+        "Open-air rooftop terrace overlooking an endless city vista at magic hour, golden confetti and warm sunset breeze dancing in the air.",
+      contextEnvironmentNotes:
+        "Bối cảnh: Sân thượng trên cao nhìn ra toàn cảnh thành phố lúc hoàng hôn rực rỡ, gió chiều mang theo làn không khí ấm áp sảng khoái.",
       characterVfxPrompt:
         "Hair strand physics dynamics, micro-expression smile cheek lines, soft beauty aura flare, zero facial distortion.",
       characterVfxNotes:
@@ -310,6 +343,14 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         "Grand cinematic wide shot of the character standing at a breathtaking sunset shoreline, gentle goodbye gesture, silhouette highlighted by blazing amber and violet skies, wide cinematic aspect ratio, filmic grain.",
       vietnameseNotes:
         "Toàn cảnh góc rộng hoàng hôn kết màn: Bầu trời nhuộm màu ráng chiều tím vàng lãng mạn, nhân vật vẫy tay chào đầy lắng đọng.",
+      characterActionPrompt:
+        "Character stands gracefully in profile by the water's edge, gazing out at the horizon, slowly turning back with a serene farewell nod.",
+      characterActionNotes:
+        "Hành động: Nhân vật đứng góc nghiêng bên bờ nước, phóng tầm mắt ra đường chân trời, khẽ quay lại gật đầu chào từ biệt đầy lắng đọng.",
+      contextEnvironmentPrompt:
+        "Expansive shoreline at twilight, calm ocean waves reflecting fiery magenta and amber clouds, peaceful dusk atmosphere.",
+      contextEnvironmentNotes:
+        "Bối cảnh: Bờ biển bao la lúc chập tối, từng đợt sóng êm đềm phản chiếu sắc mây đỏ hồng rực rỡ, bầu không khí điện ảnh yên bình.",
       characterVfxPrompt:
         "Golden hour contour silhouette edge, wind blowing cape and fabric gently, soft lens flare warmth.",
       characterVfxNotes:
@@ -420,6 +461,18 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
           vietnameseNotes:
             s.vietnameseNotes ||
             `Cảnh ${idx + 1}: Chân dung điện ảnh sắc nét, ánh sáng hài hòa theo phong cách ${characterProfile.visualStyle}.`,
+          characterActionPrompt:
+            s.characterActionPrompt ||
+            `Character maintains steady posture, engaging naturally with the camera in scene ${idx + 1}.`,
+          characterActionNotes:
+            s.characterActionNotes ||
+            `Hành động: Nhân vật giữ phong thái tự tin, tương tác tự nhiên với góc quay cảnh ${idx + 1}.`,
+          contextEnvironmentPrompt:
+            s.contextEnvironmentPrompt ||
+            `Atmospheric setting with rich depth of field and harmonic cinematic lighting.`,
+          contextEnvironmentNotes:
+            s.contextEnvironmentNotes ||
+            `Bối cảnh: Chiều sâu trường ảnh mượt mà, ánh sáng hài hòa làm nổi bật chủ thể.`,
           characterVfxPrompt:
             s.characterVfxPrompt ||
             "Golden rim light wrap, realistic hair dynamics, biometric landmark lock 100%, sharp facial geometry.",
@@ -583,6 +636,10 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
         voiceoverAudioUrl: sc.voiceoverAudioUrl,
         englishPrompt: sc.englishPrompt,
         vietnameseNotes: sc.vietnameseNotes,
+        characterActionPrompt: sc.characterActionPrompt,
+        characterActionNotes: sc.characterActionNotes,
+        contextEnvironmentPrompt: sc.contextEnvironmentPrompt,
+        contextEnvironmentNotes: sc.contextEnvironmentNotes,
         characterProfile: {
           ...characterProfile,
           outfit: sc.outfitVariation || characterProfile.outfit,
@@ -1323,13 +1380,40 @@ export const StoryboardStudio: React.FC<StoryboardStudioProps> = ({
 
                     {/* Hiệu ứng nhân vật & Bối cảnh thu nhỏ */}
                     <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-900 text-[10px]">
-                      <div className="p-2 rounded-lg bg-slate-900/40 border border-slate-800/80">
-                        <span className="font-bold text-purple-300 block mb-0.5">Hiệu ứng nhân vật:</span>
-                        <p className="text-slate-400 line-clamp-2">{scene.characterVfxNotes || "Ánh sáng viền vàng, khóa nét mặt 100%"}</p>
+                      <div className="p-2 rounded-lg bg-slate-900/50 border border-purple-500/20 space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-purple-300 flex items-center gap-1">
+                            <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                            <span>Hành động & Cử chỉ nhân vật:</span>
+                          </span>
+                          <span className="text-[9px] text-purple-400/80 font-mono">Action</span>
+                        </div>
+                        <p className="text-[10px] text-slate-200 leading-snug">
+                          {scene.characterActionNotes || scene.characterVfxNotes || "Nhân vật duy trì cử chỉ tự nhiên, thần thái tự tin làm chủ khung hình."}
+                        </p>
+                        {scene.characterActionPrompt && (
+                          <p className="text-[9px] text-cyan-300/80 font-mono line-clamp-1 italic">
+                            EN: {scene.characterActionPrompt}
+                          </p>
+                        )}
                       </div>
-                      <div className="p-2 rounded-lg bg-slate-900/40 border border-slate-800/80">
-                        <span className="font-bold text-teal-300 block mb-0.5">Bối cảnh không gian:</span>
-                        <p className="text-slate-400 line-clamp-2">{scene.environmentNotes || "Đô thị hoàng hôn, chiều sâu tự nhiên"}</p>
+
+                      <div className="p-2 rounded-lg bg-slate-900/50 border border-teal-500/20 space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-teal-300 flex items-center gap-1">
+                            <Layers className="w-2.5 h-2.5 text-teal-400" />
+                            <span>Bối cảnh & Không gian:</span>
+                          </span>
+                          <span className="text-[9px] text-teal-400/80 font-mono">Context</span>
+                        </div>
+                        <p className="text-[10px] text-slate-200 leading-snug">
+                          {scene.contextEnvironmentNotes || scene.environmentNotes || "Đô thị hoàng hôn, chiều sâu trường ảnh điện ảnh tự nhiên."}
+                        </p>
+                        {scene.contextEnvironmentPrompt && (
+                          <p className="text-[9px] text-cyan-300/80 font-mono line-clamp-1 italic">
+                            EN: {scene.contextEnvironmentPrompt}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>

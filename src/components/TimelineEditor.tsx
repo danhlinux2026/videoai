@@ -383,6 +383,22 @@ export const TimelineEditor: React.FC<TimelineEditorProps> = ({
                                   </p>
                                 </div>
                               )}
+                              {(clip.characterActionNotes || clip.characterActionPrompt) && (
+                                <div className="pt-1 border-t border-slate-900">
+                                  <span className="text-purple-300 font-bold block">Hành động nhân vật:</span>
+                                  <p className="text-slate-300 text-[8px] leading-relaxed">
+                                    {clip.characterActionNotes || clip.characterActionPrompt}
+                                  </p>
+                                </div>
+                              )}
+                              {(clip.contextEnvironmentNotes || clip.contextEnvironmentPrompt) && (
+                                <div className="pt-1 border-t border-slate-900">
+                                  <span className="text-teal-300 font-bold block">Bối cảnh không gian:</span>
+                                  <p className="text-slate-300 text-[8px] leading-relaxed">
+                                    {clip.contextEnvironmentNotes || clip.contextEnvironmentPrompt}
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
